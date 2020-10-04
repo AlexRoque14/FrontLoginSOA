@@ -1,0 +1,22 @@
+<br><br>
+<div class="card mt-5" *ngIf= "user$ | async as user; else load">
+    <div class="card-body">
+        <div class="card-tittle text-center"> Gracias por registrarte!
+            <div class="form-group">
+                <p class="text-center">
+                    Hemos enviado un correo de confirmación al correo  <strong>{{user?.email}}</strong>
+                </p>
+                <p class="text-center">
+                    Por favor revisa tu email y click en el link para vefificar tu email.
+                </p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" (click) = "resend()"> Reenviar email.</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #load>
+    Loading...
+</ng-template>
