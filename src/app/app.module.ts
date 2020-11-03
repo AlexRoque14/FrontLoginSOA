@@ -1,16 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import * as firebase from 'firebase';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+//import firebase from "firebase/app";
+import * as firebase from "firebase";
+
+import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SendEmailComponent } from './auth/send-email/send-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VuelosComponent } from './vuelos/vuelos.component';
+import { VuelosComprarComponent } from './vuelos-comprar/vuelos-comprar.component';
+
 
 
 var firebaseConfig = {
@@ -25,13 +33,15 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+//firebase.analytics();
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    SendEmailComponent
+    SendEmailComponent,
+    VuelosComponent,
+    VuelosComprarComponent
    ],
   imports: [
     BrowserModule,
@@ -42,7 +52,8 @@ firebase.analytics();
     AngularFireStorageModule, // storage,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,55 +1,50 @@
-<div class="row">
-    <div class="col-md-6 mx-auto mt-5">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="text-center"> Login</h4>
-                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" formControlName="password"
-                            required>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block"
-                            routerLink="/home">Cancelar</button>
-                        <br>
-                        <p>
-                            Olvide mi contraseña.<a [routerLink]="['/password']"> Click here</a>
-                        </p>
-                    </div>
-                </form>
-                <div >
-                    <a class="btn btn-social-icon btn-twitter">
-                      <span class="fa fa-twitter"></span>
-                    </a>
-                    <label type="hidden" style="visibility:hidden">.........</label>
-                    <a class="btn btn-social-icon btn-facebook" (click)="onFacebook()">
-                      <span class="fa fa-facebook"></span>
-                    </a>
-
-                    <label type="hidden" style="visibility:hidden">.........</label>
-                    <a class="btn btn-social-icon btn-google" (click)="onGoogle()">
-                      <span class="fa fa-google"></span>
-                    </a>
-
-                    <label type="hidden" style="visibility:hidden">......,..</label>
-                    <a class="btn btn-social-icon btn-github" (click)="onGitHub()">
-                      <span class="fa fa-github"></span>
-                    </a>
-                    <br>
-              </div>
-              <div>
-              <!-- <br>
-                <a class="btn btn-social-icon btn-phone" (click)="onPhone()">
-                  <span class="fa fa-phone"></span>
-                </a>
-                <label type="hidden" style="visibility:hidden">......,..</label>
-              </div>
-            </div> -->
-        </div>
+<br><br>
+<div class="card mb-7" style="max-width: 1200px;">
+  <div class="row no-gutters">
+    <div class="col-md-5" async>
+      <img loading="lazy" src="https://static.t13.cl/images/original/2018/07/1532249407-102561197bank60k.jpg" class="card-img aero" alt="airbus">
     </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h4 class="text-center"> Login</h4>
+        <form [formGroup]="loginForm" >
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-success btn-lg btn-block" (click)="onLogin(loginForm.value)">Login</button>
+            <button type="submit" class="btn btn-danger btn-lg btn-block" routerLink="/home">Cancelar</button>
+            <br>
+            <p>
+              Olvide mi contraseña.<a [routerLink]="['/password']"> Click here</a>
+            </p>
+          </div>
+        </form>
+        <div>
+          <label type="hidden" style="visibility:hidden">.............</label>
+          <a class="btn btn-social-icon btn-twitter">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <label type="hidden" style="visibility:hidden">.............</label>
+          <a class="btn btn-social-icon btn-facebook" (click)="onFacebook()">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <label type="hidden" style="visibility:hidden">.............</label>
+          <a class="btn btn-social-icon btn-google" (click)="onGoogle()">
+            <span class="fa fa-google"></span>
+          </a>
+          <label type="hidden" style="visibility:hidden">.............</label>
+          <a class="btn btn-social-icon btn-github" (click)="onGitHub()">
+            <span class="fa fa-github"></span>
+          </a>
+          <br>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-

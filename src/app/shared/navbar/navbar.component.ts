@@ -14,13 +14,30 @@ import Swal from 'sweetalert2'
 
 
 export class NavbarComponent implements OnInit {
+
   public isLogged = false;
+
+
   public user$: Observable<any> = this.authService.afAuth.user;
+
+  public user2: any;
+  public user: any;
 
   constructor(private authService: AuthService , private router: Router) { }
 
-  async ngOnInit() {
+ ngOnInit() {
+    this.validUser();
   }
+
+  validUser(){
+      this.authService.ApiGetById(localStorage.getItem('id_user')).subscribe(response =>{
+        if(response){
+          this.isLogged = true;
+          this.user = response.user.email;
+        }
+      })
+  }
+
 
   async onOut(){
     try {
@@ -30,6 +47,14 @@ export class NavbarComponent implements OnInit {
         title: 'Yes!',
         text: 'cierre de sesión exitoso!',
       })
+      
+      this.isLogged = false;
+
+      localStorage.removeItem('id_user')
+      localStorage.removeItem('token')
+      localStorage.removeItem('email')
+
+
       this.router.navigate(['/home']);
     } catch (error) {
       Swal.fire({
@@ -38,6 +63,15 @@ export class NavbarComponent implements OnInit {
         text: 'Ha ocurrido un error!',
       })
     }
+  }
+
+  onLogOut(){
+    this.isLogged = false;
+    localStorage.removeItem('id_user')
+    localStorage.removeItem('token')
+    localStorage.removeItem('email')
+
+    this.router.navigate(['/home']);
   }
 
 }

@@ -1,34 +1,71 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" routerLink="/home">LogianSOA</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/home" >Home</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav mx-auto" *ngIf="user$ | async as user; else login">
-        <li class="nav-item" *ngIf="user">
-          <a class="nav-link" (click)="onOut()">Logout</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">{{user?.email}}</a>
-        </li>
-      </ul>
-
-      <ng-template #login>
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/login">Login</a>
+<header>
+  <!--- Navbar --->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand text-white" href="/home"><i class="fa fa-plane fa-lg mr-2"></i>Aeroline</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nvbCollapse"
+        aria-controls="nvbCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nvbCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item pl-1">
+            <a class="nav-link" href="#"><i class="fa fa-home fa-fw mr-1"></i>Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/register">Registro</a>
-          </li>
+          
+          <ul class="navbar-nav mx-auto" *ngIf="isLogged">
+            <li class="nav-item pl-1">
+              <a class="nav-link" routerLink="comprar-Vuelo" routerLinkActive="router-link-active"><i
+                  class="fa fa-fighter-jet fa-fw mr-1"></i>Comprar Vuelo</a>
+            </li>
+            <li class="nav-item pl-1">
+              <a class="nav-link" href="#"><i class="fa fa-th-list fa-fw mr-1"></i>Mis compras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-user fa-fw mr-1"></i>{{user}}</a>
+            </li>
+            <li class="nav-item" *ngIf="user">
+              <a class="nav-link" (click)="onLogOut()"><i class="fa fa-sign-in fa-fw mr-1"></i>Logout</a>
+            </li>
+          </ul>
+
+
+
+          <ul class="navbar-nav mx-auto" *ngIf="user$ | async as user; else login">
+            <li class="nav-item pl-1">
+              <a class="nav-link" routerLink="comprar-Vuelo" routerLinkActive="router-link-active"><i
+                  class="fa fa-fighter-jet fa-fw mr-1"></i>Comprar Vuelo</a>
+            </li>
+            <li class="nav-item pl-1">
+              <a class="nav-link" href="#"><i class="fa fa-th-list fa-fw mr-1"></i>Mis compras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"><i class="fa fa-user fa-fw mr-1"></i>{{user?.email}}</a>
+            </li>
+            <li class="nav-item" *ngIf="user">
+              <a class="nav-link" (click)="onOut()"><i class="fa fa-sign-in fa-fw mr-1"></i>Logout</a>
+            </li>
+          </ul>
+
+          
+          <ng-template #login>
+            <li class="nav-item pl-1"  *ngIf="!isLogged">
+              <a class="nav-link" routerLink="/vuelos" routerLinkActive="router-link-active"><i
+                  class="fa fa-th-list fa-fw mr-1"></i>Vuelos</a>
+            </li>
+            <ul class="navbar-nav mx-auto" *ngIf="!isLogged">
+              <li class="nav-item pl-1">
+                <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus fa-fw mr-1"></i>Registrarme</a>
+              </li>
+              <li class="nav-item pl-1" *ngIf="!isLogged">
+                <a class="nav-link" routerLink="/login"><i class="fa fa-sign-in fa-fw mr-1"></i>Iniciar Sesión</a>
+              </li>
+            </ul>
+          </ng-template>
+
         </ul>
-
-      </ng-template>
+      </div>
     </div>
   </nav>
+  <!--# Navbar #-->
+</header>

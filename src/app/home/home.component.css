@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.c{
+    padding-top: 0.1%;
+}
+
+body {
+    padding-top: 56px;
+  }
+
+.carousel-inner p{
+    font-size: 300%;
+}
+
+
+.letter{
+    font-size: 200%;
+    font: bold 200% serif;
+    color: whitesmoke;
+}
+
+.cd{
+    background-color: #1D5CD0;
+}
+
+
+.covid .btn{
+    background-color: #CB2C12;
+    color: white;
+    transition: background-color .5s;
+}
+
+.covid .btn:hover{
+    background-color: #CF6D24;
+}
+
+
+
+.contenedor figure .btn{
+    color: whitesmoke;
+    background-color: #CB2C12;
+    transition: all 500ms ease-out;
+    cursor: pointer;
+}
+
+
+.contenedor{
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+
+}
+
+.contenedor figure {
+    position: relative;
+    /* height: 250px;
+    width: 350px; */
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0 , 0.50);
+    cursor: pointer;
+}
+
+.contenedor figure img{
+    width: 100%;
+    height: 100%;
+    transition: all 500ms ease-out;
+}
+
+.contenedor figure .capa{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 103, 123 , 0.5);
+    transition: all 500ms ease-out;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+}
+
+.contenedor figure:hover > .capa {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contenedor figure:hover > .capa {
+    margin-top: 70px;
+    margin-bottom: 15px;
+}   
+
+.contenedor figure .capa{
+
+    color: #fff;
+    font-weight: 400px;
+    margin-bottom: 120px;
+    transition: all 500ms ease-out;
+    margin-top: 30px;
+}
+
+.contenedor figure .capa p{
+
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.5;
+    width: 100%;
+    max-width: 220px;
+    margin: auto;
+}
