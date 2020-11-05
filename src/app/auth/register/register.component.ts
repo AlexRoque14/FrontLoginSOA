@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidatorFn, ValidationErrors} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+
 import Swal from 'sweetalert2';
-import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -30,7 +32,8 @@ export class RegisterComponent implements OnInit {
          RegisterComponent.patternValidator(/[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g, { caracter: true })
       ]
       )],
-      confirmPasword: ['', [Validators.required]]
+      confirmPasword: ['', [Validators.required]],
+      roll: ['1']    //1 es usuario normal - 2 es administrador
     }, { 
       validator: this.ConfirmedValidator('password', 'confirmPasword')
     })
@@ -42,7 +45,6 @@ export class RegisterComponent implements OnInit {
   }
   
   async onRegister(loginForm: any){
-    console.log('Form->' , this.loginForm.value);
     try {
       const user = await (await this.authService.Apiregistro(loginForm)).subscribe(response=>{ 
         if(user) {
@@ -51,7 +53,6 @@ export class RegisterComponent implements OnInit {
             title: 'Yes!',
             text: 'Registro exitoso!',
           })
-          console.log(response)
           this.router.navigate(['/']);
         }
       })
@@ -67,7 +68,6 @@ export class RegisterComponent implements OnInit {
   }
 
   async onRegisterFirebase(){
-    console.log('Form->' , this.loginForm.value);
     const {email, password} = this.loginForm.value;
     try {
       const user = await this.authService.register(email , password);

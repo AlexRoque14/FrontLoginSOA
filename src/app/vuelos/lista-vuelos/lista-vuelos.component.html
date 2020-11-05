@@ -1,0 +1,35 @@
+
+  <div class="card c">
+    <div class="card-body ">
+      <table class="table">
+        <thead class="thead-light">
+          <tr class="letter">
+            <th>id</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Operador</th>
+            <th>clase</th>
+            <th>sala</th>
+            <th>hora</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vuelo of vuelos; index as i" class="letter">
+            <th class="letter">{{i+1}}</th>
+            <th class="letter">{{vuelo.origen}}</th>
+            <th class="letter">{{vuelo.destino}}</th>
+            <th class="letter">{{vuelo.operador}}</th>
+            <th class="letter">{{vuelo.clase}}</th>
+            <th class="letter">{{vuelo.sala}}</th>
+            <th class="letter">{{vuelo.hora}}</th>
+            <th><button type="button" class="btn btn-warning" data-toggle="modal"
+                data-target="#exampleModal">Editar</button></th>
+            <th><button type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#exampleModal">Eliminar</button></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

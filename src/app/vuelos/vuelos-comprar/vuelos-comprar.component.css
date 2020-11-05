@@ -15,26 +15,31 @@
     background-color: #3DA4DF;
     color: white;
     cursor: pointer;
+    margin: auto;
 }
 
 .b2{
     background-color: #2588C1;
     color: white;
+    margin: auto;
 }
 
 .b3{
     background-color: #1E7DB4;
     color: white;
+    margin: auto;
 }
 
 .b4{
     background-color: #742FC7;
     color: white;
+    margin: auto;
 }
 
 .b5{
     background-color: #6424B0;
     color: white;
+    margin: auto;
 }
 
 
@@ -42,14 +47,17 @@
     background-color: #CB2C12;
     color: white;
     transition: background-color .5s;
+    margin: auto;
 }
 
 .b6:hover{
     background-color: #CF6D24;
+    margin: auto;
 }
 
 p{
     justify-content: center;
     text-justify: auto;
     padding-top: 1%;
+    margin: auto;
 }

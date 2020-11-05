@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
+
 import Swal from 'sweetalert2'
 
 
@@ -16,46 +17,75 @@ import Swal from 'sweetalert2'
 export class NavbarComponent implements OnInit {
 
   public isLogged = false;
-
-
+  public roll: any;
   public user$: Observable<any> = this.authService.afAuth.user;
-
-  public user2: any;
   public user: any;
 
-  constructor(private authService: AuthService , private router: Router) { }
 
- ngOnInit() {
-    this.validUser();
+  constructor(private authService: AuthService, private router: Router) { }
+
+
+  ngOnInit() {
+    this.authService.ApiGetById(localStorage.getItem('id_user')).subscribe(response => {
+      if (response) {
+        this.isLogged = true;
+        this.user = response.user.email;
+        this.roll = response.user.roll;
+      }
+    })
   }
 
-  validUser(){
-      this.authService.ApiGetById(localStorage.getItem('id_user')).subscribe(response =>{
-        if(response){
-          this.isLogged = true;
-          this.user = response.user.email;
-        }
-      })
-  }
-
-
-  async onOut(){
+  async onOut() {
     try {
-      this.authService.logout();
       Swal.fire({
         icon: 'success',
         title: 'Yes!',
         text: 'cierre de sesión exitoso!',
       })
+
+      let usr = localStorage.getItem('rs')
+     
+      if(usr === "1"){
+        usr = 'Facebook'
+      }
+
+      if(usr === "2"){
+        usr = 'Google'
+      }
+
+      if(usr === "3"){
+        usr = 'Github'
+      }
+
+      if(usr === "4"){
+        usr = 'Firebase'
+      }
+
+      var date = new Date();
+
+      const log = {
+        id_usuario: usr,
+        name_usuario: 'Usuario de '+usr,
+        status: 'Logout de ' + usr + ' Exitoso',
+        metodo_inicio: usr,
+        hora_fecha: 'Fecha: ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear()
+          + '---Hora: ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+      }
       
-      this.isLogged = false;
+      //envia a el log
+      this.authService.ApiSetLog(log).subscribe(response => {
+        if (response) {
+          console.log('Log actualizado', response)
+        }
+      }, err => {
+        console.log(err)
+      })
 
-      localStorage.removeItem('id_user')
-      localStorage.removeItem('token')
-      localStorage.removeItem('email')
-
-
+      localStorage.removeItem('rs')
+      localStorage.removeItem('isLog')
+      this.authService.logout();
       this.router.navigate(['/home']);
+
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -65,12 +95,39 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  onLogOut(){
+  onLogOut() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Yes!',
+      text: 'cierre de sesión exitoso!',
+    })
+
+    var date = new Date();
+    const log = {
+      id_usuario: localStorage.getItem('id_user'),
+      name_usuario: this.user,
+      status: 'Logout Exitoso',
+      metodo_inicio: 'Correo Electronico',
+      hora_fecha: 'Fecha: ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear()
+        + '---Hora: ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+    }
+
+    //envia a el log
+    this.authService.ApiSetLog(log).subscribe(response => {
+      if (response) {
+        console.log('Log actualizado', response)
+      }
+    }, err => {
+      console.log(err)
+    })
+
     this.isLogged = false;
     localStorage.removeItem('id_user')
+    localStorage.removeItem('email_user')
     localStorage.removeItem('token')
-    localStorage.removeItem('email')
-
+    localStorage.removeItem('isLog')
+    localStorage.removeItem('rol')
+    localStorage.removeItem('isLog')
     this.router.navigate(['/home']);
   }
 

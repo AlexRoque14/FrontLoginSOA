@@ -3,7 +3,6 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="text-center"> Registro</h4>
-
                 <div class="tab-content" id="pills-tabContent">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item">
@@ -18,20 +17,20 @@
                     <!-- Registro Api -->
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                         aria-labelledby="pills-home-tab">
-                        <form [formGroup]="loginForm" autocomplete="off">
+                        <form [formGroup]="loginForm" autocomplete="nope">
                             <div class="row form-group">
                                 <div class="col">
                                     <input type="text" class="form-control" placeholder="Nombre"
-                                        formControlName="nombre" autocomplete="off" required>
+                                        formControlName="nombre" autocomplete="nope" required>
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" placeholder="Apellido"
-                                        formControlName="apellido" autocomplete="off" required>
+                                        formControlName="apellido" autocomplete="nope" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Correo Electronico"
-                                    formControlName="email" autocomplete="off" required>
+                                    formControlName="email" autocomplete="nope" required>
                                 <!--Validar correo-->
                                 <label class="text-danger" *ngIf="loginForm.controls['email'].hasError('email')">
                                     Ingresa una dirección de correo valida!
@@ -39,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Contraseña"
-                                    formControlName="password" autocomplete="off" required>
+                                    formControlName="password" autocomplete="nope" required>
                                 <label *ngIf="f.password.touched && f.password.invalid" class="text-danger">
                                     <label *ngIf="f.password.errors.required">Contraseña requerida.</label>
                                 </label>
@@ -64,7 +63,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Confirmar contraseña"
-                                    formControlName="confirmPasword" minlength="8" maxlength="15" autocomplete="off"
+                                    formControlName="confirmPasword" minlength="8" maxlength="15" autocomplete="nope"
                                     required>
                                 <div *ngIf="f.confirmPasword.touched && f.confirmPasword.invalid" class="text-danger">
                                     <div *ngIf="f.confirmPasword.errors.required">Contraseña requerida.</div>
@@ -82,14 +81,14 @@
                     </div>
                     <!-- Registro Firebase  -->
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <form [formGroup]="loginForm" (ngSubmit)="onRegisterFirebase()" autocomplete="off">
+                        <form [formGroup]="loginForm" (ngSubmit)="onRegisterFirebase()" autocomplete="nope">
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Correo Electronico"
-                                    formControlName="email" required autocomplete="off">
+                                    formControlName="email" required autocomplete="nope">
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Contraseña"
-                                    formControlName="password" autocomplete="off" required>
+                                    formControlName="password" autocomplete="nope" required>
                                 <label *ngIf="f.password.touched && f.password.invalid" class="text-danger">
                                     <label *ngIf="f.password.errors.required">Contraseña requerida.</label>
                                 </label>
@@ -114,7 +113,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" placeholder="Confirmar contraseña"
-                                    formControlName="confirmPasword" minlength="8" maxlength="15" autocomplete="off"
+                                    formControlName="confirmPasword" minlength="8" maxlength="15" autocomplete="nope"
                                     required>
                                 <div *ngIf="f.confirmPasword.touched && f.confirmPasword.invalid" class="text-danger">
                                     <div *ngIf="f.confirmPasword.errors.required">Contraseña requerida.</div>

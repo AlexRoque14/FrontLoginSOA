@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.c{
+    padding-top: 0.4%;
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+
+.b1{
+    background-color: #3DA4DF;
+    color: white;
+    cursor: pointer;
+}

@@ -13,16 +13,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
 
   public user: User;
+  
   constructor(public afAuth: AngularFireAuth, private http: HttpClient) { }
 
   URL: string = "http://127.0.0.1:4000";
-	token;
-  public id;
-  
-  headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
-
+	token: any;
+  public id: any;
+  email: any;
 
  //M E T H O D S -  W I T H  -  A P I
 
@@ -49,14 +46,92 @@ export class AuthService {
   ApiGetById(id: String): Observable<any>{
     try {
       this.token = localStorage.getItem('token');
-      let headerss = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
-      return this.http.get(this.URL + '/user/' + id, {headers: headerss })
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.get<any>(this.URL + '/user/' + id, {headers: headers })
    
     } catch (error) {
       console.log(error)
     }
-
   }
+
+
+  //registro vuelos
+  ApiSetVuelo(body: any): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.post<any>(this.URL + '/vuelos' , body, {headers: headers })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  ApiGetVuelo(): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.get<any>(this.URL + '/vuelos' , {headers: headers })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  ApiGetVueloById(id: string): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.get<any>(this.URL + '/vuelos/' + id, {headers: headers })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  ApiUpdateVueloById(id: string): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.put<any>(this.URL + '/vuelos/' + id, {headers: headers })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  ApiDeleteVueloById(id: string): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.delete<any>(this.URL + '/vuelos/' + id, {headers: headers })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+
+
+
+
+  //archivos logs
+  ApiSetLog(body: any): Observable<any>{
+    try {
+      return this.http.post<any>(this.URL + '/logs', body)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  ApiUpdateLog(id: String , body: any): Observable<any>{
+    try {
+      return this.http.put<any>(this.URL + '/logs/' + id, body)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+ 
+
+
 
   //M E T H O D S -  W I T H  -  F I R E B A SE
 

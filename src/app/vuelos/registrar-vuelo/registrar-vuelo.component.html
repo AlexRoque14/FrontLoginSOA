@@ -1,0 +1,47 @@
+<div class="card-deck c">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Listas de Vuelos. </h5>
+      <div class="form-row">
+        <div class="form-group col-md-11">
+          <!-- Registro Api -->
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <form [formGroup]="registroForm" autocomplete="nope">
+              <div class="row form-group">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Origen / From" formControlName="origen"
+                    autocomplete="nope" required>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Destino / to" formControlName="destino"
+                    autocomplete="nope" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Aerolinea / Aeroline" formControlName="operador"
+                  autocomplete="nope" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Clase" formControlName="clase"
+                  autocomplete="nope" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Sala / Gate" formControlName="sala"
+                  autocomplete="nope" required>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Fecha - Hora/ Date - Time" formControlName="hora"
+                  autocomplete="nope" required>
+              </div>
+              <div><br><br>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!registroForm.valid"
+                  (click)="onRegister(registroForm.value)">Registrar</button>
+                <button type="submit" class="btn btn-danger btn-lg btn-block" (click)="cancel()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

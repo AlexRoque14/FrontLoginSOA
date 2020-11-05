@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -16,8 +18,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SendEmailComponent } from './auth/send-email/send-email.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { VuelosComponent } from './vuelos/vuelos.component';
-import { VuelosComprarComponent } from './vuelos-comprar/vuelos-comprar.component';
+import { ListaVuelosComponent } from './vuelos/lista-vuelos/lista-vuelos.component';
+import { RegistrarVueloComponent } from './vuelos/registrar-vuelo/registrar-vuelo.component';
+import { VuelosComprarComponent } from './vuelos/vuelos-comprar/vuelos-comprar.component';
+
 
 
 
@@ -40,11 +44,13 @@ firebase.initializeApp(firebaseConfig);
     AppComponent,
     NavbarComponent,
     SendEmailComponent,
-    VuelosComponent,
+    ListaVuelosComponent,
+    RegistrarVueloComponent,
     VuelosComprarComponent
    ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig), //iniatilize
     AngularFirestoreModule, // firestore

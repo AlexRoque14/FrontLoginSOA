@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.c{
+    padding-top: 0.5%;
+    margin-top: 10px;
+    margin-left: 1px;
+    margin-right: 1px;
+    margin: auto;
+}
+
+.b1{
+    background-color: #3DA4DF;
+    color: white;
+    cursor: pointer;
+}
+
+.card {
+    margin-top: 3%;
+}
+
+.letter{
+    justify-content: center;
+    text-justify: auto;
+    padding-top: 2%;
+    text-align: center;
+    font-size: medium;
+    margin: auto;
+}
+
+.table{
+    margin-top: 2%;
+    margin: auto;
+}
+
+tr{
+    margin: auto;
+}
+
+th{
+    margin: auto;
+}
+

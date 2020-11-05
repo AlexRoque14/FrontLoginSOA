@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
  
  /* Style all font awesome icons */
@@ -15,27 +20,51 @@
     opacity: 0.7;
   }
 
-  /* Facebook */
-.fa-facebook {
+
+
+ 
+
+  .btn-twitter{
+    margin-left: 20px;
+    
+  }
+
+  .btn-facebook{
+    margin-left: 20px;
+  }
+  .btn-github{
+    margin-left: 20px;
+  }
+  .btn-google{
+    margin-left: 20px;
+  }
+
+  
+ /* Facebook */
+  .fa-facebook {
     background: #3B5998;
     color: white;
+    margin: auto;
   }
-  
+
   /* Twitter */
   .fa-twitter {
     background: #55ACEE;
     color: white;
+    margin: auto;
   }
 
     /* Twitter */
     .fa-github {
         background: #101111;
         color: white;
+        margin: auto;
       }
 
   .fa-google{
     background: #bb5a33;
     color: white;
+    margin: auto;
   }
 
  .aero{
