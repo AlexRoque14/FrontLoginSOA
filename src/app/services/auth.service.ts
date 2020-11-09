@@ -129,6 +129,15 @@ export class AuthService {
     }
   }
 
+  sendEmail(body: any): Observable<any>{   
+    try {
+      console.log('metodo email')
+       return this.http.post<any>('http://localhost:4000/email', body)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
  
 
 
@@ -186,6 +195,8 @@ export class AuthService {
       console.log(error)
     }
   }
+
+
 
   //Traer el usuario con firebase
   getCurrentUser(){

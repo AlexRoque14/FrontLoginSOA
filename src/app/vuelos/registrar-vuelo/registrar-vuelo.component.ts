@@ -54,4 +54,40 @@ export class RegistrarVueloComponent implements OnInit {
     }
   }
 
+
+  
+  cancel(){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-danger',
+        cancelButton: 'btn btn-success'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: '¿Estás seguro de terminar el registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Terminar registro!',
+      cancelButtonText: 'Continuar con el registro!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'El proceso de registro ha sido cancelado.',
+          'success'
+        )
+        this.router.navigate(['/home']);
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Por favor, continue con el registro.',
+          'error'
+        )
+      }
+    })
+  }   
 }

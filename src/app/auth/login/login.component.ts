@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timerProgressBar: true,
           });
+        
           this.cont = false;
         }
 
@@ -178,7 +179,19 @@ export class LoginComponent implements OnInit {
             timer: 86400,
             showConfirmButton: false,
             timerProgressBar: true,
-          });
+          }); 
+
+          const correo = {
+            email : loginForm.email
+          }
+
+          this.authService.sendEmail(correo).subscribe(response => {
+            if (response) {
+              console.log('email enviado', response)
+            }
+          }, err => {
+            console.log(err)
+          })
 
           this.cont = false;
         }
