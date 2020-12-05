@@ -16,7 +16,7 @@ export class AuthService {
   
   constructor(public afAuth: AngularFireAuth, private http: HttpClient) { }
 
-  URL: string = "http://127.0.0.1:4000";
+  URL: string = "https://aeroline.herokuapp.com";
 	token: any;
   public id: any;
   email: any;
@@ -70,7 +70,7 @@ export class AuthService {
     try {
       this.token = localStorage.getItem('token');
       let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
-      return this.http.get<any>(this.URL + '/vuelos' , {headers: headers })
+      return this.http.get<any>(this.URL + '/vuelos')
     } catch (error) {
       console.log(error)
     }
@@ -86,11 +86,11 @@ export class AuthService {
     }
   }
 
-  ApiUpdateVueloById(id: string): Observable<any>{
+  ApiUpdateVueloById(id: string, body: any): Observable<any>{
     try {
       this.token = localStorage.getItem('token');
       let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
-      return this.http.put<any>(this.URL + '/vuelos/' + id, {headers: headers })
+      return this.http.put<any>(this.URL + '/vuelos/' + id, body, {headers: headers })
     } catch (error) {
       console.log(error)
     }
@@ -106,12 +106,6 @@ export class AuthService {
     }
   }
 
-
-
-
-
-
-
   //archivos logs
   ApiSetLog(body: any): Observable<any>{
     try {
@@ -120,7 +114,7 @@ export class AuthService {
       console.log(error)
     }
   }
-
+  //traer por id los logs
   ApiUpdateLog(id: String , body: any): Observable<any>{
     try {
       return this.http.put<any>(this.URL + '/logs/' + id, body)
@@ -129,16 +123,64 @@ export class AuthService {
     }
   }
 
+  //enviar correos
   sendEmail(body: any): Observable<any>{   
     try {
-      console.log('metodo email')
        return this.http.post<any>('http://localhost:4000/email', body)
     } catch (error) {
       console.log(error)
     }
   }
 
- 
+  sendEmailRegistro(body: any): Observable<any>{
+    try {
+      return this.http.post<any>('http://localhost:4000/email_registro', body)
+   } catch (error) {
+     console.log(error)
+   }
+  }
+
+  //traer logs
+  getLogs(){
+    try {
+      return this.http.get(this.URL + '/logs')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  //origen y destino de vuelos
+  getOrigenes(){
+    try {
+      return this.http.get(this.URL + '/origen')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getDestino(){
+    try {
+      return this.http.get(this.URL + '/destino')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getOrigenID(id: string):  Observable<any>{
+    try {
+      return this.http.get<any>(this.URL + '/origen/' + id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  getDestinoID(id: string): Observable<any>{
+    try {
+      return this.http.get<any>(this.URL + '/destino/' + id)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
 

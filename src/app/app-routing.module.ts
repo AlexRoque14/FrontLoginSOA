@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SendEmailComponent } from './auth/send-email/send-email.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { PoliticasComponent } from './politicas/politicas.component';
+import { RegistroActividadesComponent } from './registro-actividades/registro-actividades.component';
 import { ListaVuelosComponent } from './vuelos/lista-vuelos/lista-vuelos.component';
 import { RegistrarVueloComponent } from './vuelos/registrar-vuelo/registrar-vuelo.component';
 import { VuelosComprarComponent } from './vuelos/vuelos-comprar/vuelos-comprar.component';
@@ -33,6 +36,18 @@ const routes: Routes = [
     path: 'verification-email',
     component: SendEmailComponent
   },
+  {
+    path: 'contacto',
+    component: ContactoComponent
+  },
+  {
+    path: 'Politicas',
+    component: PoliticasComponent
+  },
+  {
+    path: 'registro_actividades',
+    component: RegistroActividadesComponent
+  }
 ];
 
 

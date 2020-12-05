@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id_usuario</th>
+                <th scope="col">Nombre Usuario</th>
+                <th scope="col">Metodo de Inicio de sesión</th>
+                <th scope="col">Status</th>
+                <th scope="col">Hora y fecha</th>
+                <th scope="col">Actividad</th>
+                <th scope="col">Tipo de Usuario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; index as i">
+                <td>{{ i + 1}}</td>
+                <td>{{ user.id_usuario}}</td>
+                <td>{{ user.name_usuario}}</td>
+                <td>{{ user.metodo_inicio}}</td>
+                <td>{{ user.status}}</td>
+                <td>{{ user.hora_fecha}}</td>
+                <td>{{ user.actividad}}</td>
+                <td>{{ user.roll}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>

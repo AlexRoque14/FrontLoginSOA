@@ -15,33 +15,67 @@ export class RegistrarVueloComponent implements OnInit {
 
   registroForm: FormGroup = new FormGroup({});
 
-  constructor(private authService: AuthService , private router: Router , private fb: FormBuilder) { 
-    
+  origenes: any;
+  destino: any;
+
+  destino_id: String;
+  origen_id: String;
+  origin: any;
+  vueloID: any;
+  destiny: any;
+
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) {
+
     this.registroForm = fb.group({
       origen: ['', [Validators.required]],
       destino: ['', [Validators.required]],
+      id_origen: ['', [Validators.required]],
+      id_destino: ['', [Validators.required]],
       operador: ['', [Validators.required]],
       clase: ['', [Validators.required]],
       sala: ['', [Validators.required]],
-      hora: ['', [Validators.required]],
+      hora_fecha: ['', [Validators.required]],
     })
 
   }
 
   ngOnInit(): void {
+    this.pagValid();
+    this.getDestino();
+    this.getOrigen();
   }
 
-  async onRegister(registroForm: any){
+  async onRegister(registroForm: any) {
     try {
-      const vuelo = (await this.authService.ApiSetVuelo(registroForm)).subscribe(response => {
+      const vuelo = await(await this.authService.ApiSetVuelo(registroForm)).subscribe(response => {
         if (vuelo) {
           Swal.fire({
             icon: 'success',
             title: 'Yes!',
             text: 'Registro de vuelo exitoso!',
           });
+          var date = new Date();
+          const log = {
+            id_usuario: localStorage.getItem('id_user'),
+            name_usuario: localStorage.getItem('usuario'),
+            status: 'Registro vuelo exitoso',
+            metodo_inicio: 'Correo Electronico',
+            hora_fecha: 'Fecha: ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear()
+              + '--- Hora: ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
+            roll: localStorage.getItem('rol'),
+            actividad: "Registro nuevo vuelo"
+          }
+
+          //envia a el log
+          this.authService.ApiSetLog(log).subscribe(response => {
+            if (response) {
+              console.log('Log creado', response)
+            }
+          }, err => {
+            console.log(err)
+          })
           console.log(response);
-          this.router.navigate(['/']);
+          this.router.navigate(['/lista-vuelos']);
         }
       })
     } catch (error) {
@@ -55,8 +89,8 @@ export class RegistrarVueloComponent implements OnInit {
   }
 
 
-  
-  cancel(){
+
+  cancel() {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-danger',
@@ -89,5 +123,45 @@ export class RegistrarVueloComponent implements OnInit {
         )
       }
     })
-  }   
+  }
+
+  getOrigen() {
+    this.authService.getOrigenes().subscribe(response => {
+      this.origenes = response['ori'];
+      
+    })
+  }
+
+  getDestino() {
+    this.authService.getDestino().subscribe(response => {
+      this.destino = response['destin']
+    })
+  }
+
+
+  pagValid() {
+    if (localStorage.getItem('rol') != '2') {
+      this.router.navigate(['']);
+    }
+  }
+
+  async geOri(id){
+    await this.authService.getOrigenID(id).subscribe(response => {
+      this.origin = response['ori'].nombre_origen;
+      console.log(this.origin);
+    })
+  }
+
+  async getDest(id){
+    await this.authService.getDestinoID(id).subscribe(response =>{
+      this.destiny = response['destin'].nombre_destino
+      console.log( this.destiny)
+    })
+  }
+
+  nombreD(destino){
+    console.log(destino)
+  }
+
+
 }

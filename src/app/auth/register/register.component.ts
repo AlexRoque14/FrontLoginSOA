@@ -45,26 +45,65 @@ export class RegisterComponent implements OnInit {
   }
   
   async onRegister(loginForm: any){
-    try {
-      const user = await (await this.authService.Apiregistro(loginForm)).subscribe(response=>{ 
-        if(user) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Yes!',
-            text: 'Registro exitoso!',
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: 'Confirmación de registro',
+      text: "Al continuar con el registro estas aceptando que estas de acuerdo con nuestras politicas de privacidad",
+      footer: '<a href="/Politicas" target="_blank">Ver Politicas</a>',
+      icon: 'warning',
+      confirmButtonText: 'He leido y acepto las politicas de privacidad',
+      cancelButtonText: 'No estoy de acuerdo!',
+      showCancelButton: true,
+      reverseButtons: true
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const user = await (await this.authService.Apiregistro(loginForm)).subscribe(response=>{ 
+            if(user) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Yes!',
+                text: 'Registro exitoso!',
+              })
+              const correo = {
+                email : loginForm.email
+              }
+    
+              this.authService.sendEmailRegistro(correo).subscribe(response => {
+                if (response) {
+                  console.log('email enviado', response)
+                }
+              }, err => {
+                console.log(err)
+              })
+              this.router.navigate(['/']);
+            }
           })
-          this.router.navigate(['/']);
+        } catch (error) {
+          console.log(error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ha ocurrido un error!',
+          })
         }
-      })
-    } catch (error) {
-      console.log(error)
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Ha ocurrido un error!',
-      })
-      
-    }
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'error'
+        )
+      }
+    })
+
   }
 
   async onRegisterFirebase(){

@@ -1,168 +1,156 @@
+<!-- Para cuando sí esta loggeado -->
+
 <body>
   <div *ngIf="isLog1; else elseBlock">
-  <div class="card-deck c" >
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Origen</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">Mexico</option>
-              <option value="2">Monterrey</option>
-              <option value="3">Tijuana</option>
-            </select>
+    <form [formGroup]="registroForm" autocomplete="nope">
+      <div class="card-deck c">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Origen</h5>
+            <div class="form-row">
+              <div class="form-group col-md-11">
+                <label for="inputState"></label>
+                <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
+                  <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Destino</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">New York</option>
-              <option value="2">Canadá</option>
-              <option value="3">Japón</option>
-            </select>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Destino</h5>
+            <div class="form-row">
+              <div class="form-group col-md-11">
+                <label for="inputState"></label>
+                <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
+                  <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}" (click)="nombreD(dest.nombre_destino)">
+                    {{dest.nombre_destino}}</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+  
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Fecha</h5>
+        <h5 class="card-title">Buscar destino</h5>
         <div class="form-row">
           <div class="form-group col-md-11">
             <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">20/11/2020</option>
-              <option value="2">04/12/2020</option>
-              <option value="3">31/12/2020</option>
-            </select>
+            <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)" >Encontrar vuelos</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="card c">
-    <div class="card-body ">
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Horario</th>
-            <th scope="col"><button type="button" class="btn b1" data-toggle="modal" data-target="#exampleModal"><i
-                  class="fa fa-user"></i> Basica</button></th>
-            <th scope="col"><button type="button" class="btn b2" data-toggle="modal" data-target="#exampleModal"><i
-                  class="fa fa-check"></i> Clasica</button></th>
-            <th scope="col"><button type="button" class="btn b3" data-toggle="modal" data-target="#exampleModal"><i
-                  class="fa fa-user-circle"></i> Plus</button></th>
-            <th scope="col"><button type="button" class="btn b4" data-toggle="modal" data-target="#exampleModal"><i
-                  class="fa fa-user-plus"></i> Confort</button></th>
-            <th scope="col"><button type="button" class="btn b5" data-toggle="modal" data-target="#exampleModal"><i
-                  class="fa fa-diamond"></i> Premiere</button></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>$100</td>
-            <td>$200</td>
-            <td>$400</td>
-            <td>$600</td>
-            <td>$1000</td>
-            <td><button type="button" class="btn b6">Comprar</button></td>
-          </tr>
-        </tbody>
-      </table>
+
+</form>
+
+
+    <!-- Inicio de la tabla -->
+    <div class="card c">
+      <div class="card-body ">
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Horario</th>
+              <th scope="col">Origen</th>
+              <th scope="col">Destino</th>
+              <th scope="col"><button type="button" class="btn b1" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fa fa-user"></i> Basica</button></th>
+              <th scope="col"><button type="button" class="btn b2" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fa fa-check"></i> Clasica</button></th>
+              <th scope="col"><button type="button" class="btn b3" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fa fa-user-circle"></i> Plus</button></th>
+              <th scope="col"><button type="button" class="btn b4" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fa fa-user-plus"></i> Confort</button></th>
+              <th scope="col"><button type="button" class="btn b5" data-toggle="modal" data-target="#exampleModal"><i
+                    class="fa fa-diamond"></i> Premiere</button></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vuelo of vuelos; index as i">
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino" >{{vuelo.origen}}</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>     
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
+                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+                <td><button class="btn btn-success">Comprar Vuelo</button></td>
+              <div *ngIf ="ori != vuelo.origen && de != vuelo.destino">
+                <td><h5>No se encontraron vuelos con estas caracteristicas.</h5></td>
+              </div>
+            </tr>
+          </tbody>
+          <!-- *ngIf= "ori == vuelo.origen" -->
+          <!--  *ngIf= "ori == vuelo.origen"-->
+        </table>
+      </div>
     </div>
+    <!-- fin de la tabla -->
   </div>
-</div>
 </body>
 
 
-
+<!-- Para cuando no esta loggeado -->
 <ng-template #elseBlock>
-  <div class="card-deck c">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Origen</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">New York</option>
-              <option value="2">Canadá</option>
-              <option value="3">Japón</option>
-            </select>
+    <form [formGroup]="registroForm" autocomplete="nope">
+      <div class="card-deck c">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Origen</h5>
+            <div class="form-row">
+              <div class="form-group col-md-11">
+                <label for="inputState"></label>
+                <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
+                  <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Destino</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">Mexico</option>
-              <option value="2">Monterrey</option>
-              <option value="3">Tijuana</option>
-            </select>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Destino</h5>
+            <div class="form-row">
+              <div class="form-group col-md-11">
+                <label for="inputState"></label>
+                <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
+                  <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}" (click)="nombreD(dest.nombre_destino)">
+                    {{dest.nombre_destino}}</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+  
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Fecha</h5>
+        <h5 class="card-title">Buscar destino</h5>
         <div class="form-row">
           <div class="form-group col-md-11">
             <label for="inputState"></label>
-            <!-- <select id="inputState" class="form-control">
-                    <option (click)="extraeidPais(pais.id)" *ngFor="let pais of Paises"
-                        value="{{pais.id}}">{{pais.nombre}}</option>
-                </select> -->
-            <select class="custom-select" id="inputGroupSelect01">
-              <option selected value="1">20/11/2020</option>
-              <option value="2">04/12/2020</option>
-              <option value="3">31/12/2020</option>
-            </select>
+            <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)" >Encontrar vuelos</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+</form>
+  <!-- inicia la tabla -->
   <div class="card c">
     <div class="card-body ">
       <table class="table">
         <thead class="thead-light">
           <tr>
             <th scope="col">Horario</th>
+            <th scope="col">Origen</th>
+            <th scope="col">Destino</th>
             <th scope="col"><button type="button" class="btn b1" data-toggle="modal" data-target="#exampleModal"><i
                   class="fa fa-user"></i> Basica</button></th>
             <th scope="col"><button type="button" class="btn b2" data-toggle="modal" data-target="#exampleModal"><i
@@ -177,15 +165,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>$100</td>
-            <td>$200</td>
-            <td>$400</td>
-            <td>$600</td>
-            <td>$1000</td>
+          <tr *ngFor="let vuelo of vuelos; index as i">
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino" >{{vuelo.origen}}</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>     
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
+              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+
+            <div *ngIf ="ori != vuelo.origen && de != vuelo.destino">
+                <h5>No se encontraron vuelos con estas caracteristicas.</h5>
+            </div>
           </tr>
         </tbody>
+        <!-- *ngIf= "ori == vuelo.origen" -->
+        <!--  *ngIf= "ori == vuelo.origen"-->
       </table>
     </div>
   </div>
@@ -199,7 +195,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Más acerca de las familias tarifarias</h5>
+        <h4 class="modal-title" id="exampleModalLabel">Más acerca de las familias tarifarias</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -233,26 +229,69 @@
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
+              <a><i>(1) Unicamente se permite equipaje de mano.</i></a><br>
+              <a><i>● Bolsa de mano</i></a><br>
+              <a><i>● Mochilas, portafolios, carteras</i></a><br>
+              <a><i>● Cámara</i></a><br>
+              <a><i>(2) Objetos restringidos.</i></a><br>
+              <a><i>● Objetos punzocortantes</i></a><br>
+              <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="clasica" role="tabpanel" aria-labelledby="clasica-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
+              <a><i>(1) Unicamente se permiten.</i></a><br>
+              <a><i>● Dos equipajes de mano</i></a><br>
+              <a><i>● Mochilas, portafolios, carteras</i></a><br>
+              <a><i>● Equipajes documentados (25kg)</i></a><br>
+              <a><i>● Prioridad en abordaje</i></a><br>
+              <a><i>● Seleccion de asientos estandar y atención personal</i></a><br>
+              <a><i>(2) Objetos restringidos.</i></a><br>
+              <a><i>● Objetos punzocortantes</i></a><br>
+              <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="plus" role="tabpanel" aria-labelledby="plus-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
+              <a><i>(1) Unicamente se permiten.</i></a><br>
+              <a><i>● Dos equipajes de mano</i></a><br>
+              <a><i>● Mochilas, portafolios, carteras</i></a><br>
+              <a><i>● Equipajes documentados (25kg)</i></a><br>
+              <a><i>● Viaja con la mayor flexibilidad, el primer cambio en tu vuelo es sin costo</i></a><br>
+              <a><i>● Compartimentos exclusivos para equipaje a bordo y asiento AM Plus con espacio extra</i></a><br>
+              <a><i>(2) Objetos restringidos.</i></a><br>
+              <a><i>● Objetos punzocortantes</i></a><br>
+              <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="confor" role="tabpanel" aria-labelledby="confor-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
+              <a><i>(1) Unicamente se permiten.</i></a><br>
+              <a><i>● Dos equipajes de mano</i></a><br>
+              <a><i>● Mochilas, portafolios, carteras</i></a><br>
+              <a><i>● Equipajes documentados (Hasta 2 maletas de 25kg)</i></a><br>
+              <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
+              <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
+              <a><i>(2) Objetos restringidos.</i></a><br>
+              <a><i>● Objetos punzocortantes</i></a><br>
+              <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="premiere" role="tabpanel" aria-labelledby="premiere-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
+              <a><i>(1) Unicamente se permiten.</i></a><br>
+              <a><i>● Dos equipajes de mano</i></a><br>
+              <a><i>● Mochilas, portafolios, carteras</i></a><br>
+              <a><i>● Equipajes documentados (Hasta 3 maletas de 25kg o más)</i></a><br>
+              <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
+              <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
+              <a><i>(2) Objetos restringidos.</i></a><br>
+              <a><i>● Objetos punzocortantes</i></a><br>
+              <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
         </div>
       </div>

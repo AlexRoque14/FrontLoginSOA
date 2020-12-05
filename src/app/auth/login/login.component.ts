@@ -124,6 +124,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //login con la api
   onLoginApi(loginForm: any) {
     this.authService.ApiLogin(loginForm).subscribe(async response => {
       if (response) {
@@ -137,6 +138,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', response.token)
         localStorage.setItem('isLog', '1')
         localStorage.setItem('rol', response.user.roll)
+        localStorage.setItem('usuario', response.user.email)
 
         var date = new Date();
         const log = {
@@ -145,7 +147,9 @@ export class LoginComponent implements OnInit {
           status: 'Login Exitoso',
           metodo_inicio: 'Correo Electronico',
           hora_fecha: 'Fecha: ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear()
-            + '--- Hora: ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+            + '--- Hora: ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds(),
+          roll: localStorage.getItem('rol'),
+          actividad: "navegación"
         }
 
         //envia a el log

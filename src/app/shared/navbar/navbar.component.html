@@ -12,7 +12,7 @@
           <li class="nav-item pl-1">
             <a class="nav-link" href="#"><i class="fa fa-home fa-fw mr-1"></i>Home</a>
           </li>
-          
+
           <ul class="navbar-nav mx-auto" *ngIf="isLogged && roll == 1">
             <li class="nav-item pl-1">
               <a class="nav-link" routerLink="comprar-vuelo" routerLinkActive="router-link-active"><i
@@ -29,14 +29,19 @@
             </li>
           </ul>
 
-                    
+
           <ul class="navbar-nav mx-auto" *ngIf="isLogged && roll == 2">
             <li class="nav-item pl-1">
               <a class="nav-link" routerLink="registrar-vuelo" routerLinkActive="router-link-active"><i
                   class="fa fa-fighter-jet fa-fw mr-1"></i>registrar Vuelo</a>
             </li>
             <li class="nav-item pl-1">
-              <a class="nav-link" routerLink="/lista-vuelos" routerLinkActive="router-link-active" ><i class="fa fa-th-list fa-fw mr-1"></i>Lista de vuelos</a>
+              <a class="nav-link" routerLink="/lista-vuelos" routerLinkActive="router-link-active"><i
+                  class="fa fa-th-list fa-fw mr-1"></i>Lista de vuelos</a>
+            </li>
+            <li class="nav-item pl-1">
+              <a class="nav-link" routerLink="/registro_actividades" routerLinkActive="router-link-active"><i
+                  class="fa fa-th-list fa-fw mr-1"></i>Registro de actividades</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"><i class="fa fa-user fa-fw mr-1"></i>{{user}}</a>
@@ -63,9 +68,9 @@
             </li>
           </ul>
 
-          
+
           <ng-template #login>
-            <li class="nav-item pl-1"  *ngIf="!isLogged">
+            <li class="nav-item pl-1" *ngIf="!isLogged">
               <a class="nav-link" routerLink="/comprar-vuelo" routerLinkActive="router-link-active"><i
                   class="fa fa-th-list fa-fw mr-1"></i>Vuelos</a>
             </li>

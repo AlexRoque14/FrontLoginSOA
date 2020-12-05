@@ -21,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListaVuelosComponent } from './vuelos/lista-vuelos/lista-vuelos.component';
 import { RegistrarVueloComponent } from './vuelos/registrar-vuelo/registrar-vuelo.component';
 import { VuelosComprarComponent } from './vuelos/vuelos-comprar/vuelos-comprar.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { PoliticasComponent } from './politicas/politicas.component';
+import { RegistroActividadesComponent } from './registro-actividades/registro-actividades.component';
 
 
 
@@ -46,7 +49,10 @@ firebase.initializeApp(firebaseConfig);
     SendEmailComponent,
     ListaVuelosComponent,
     RegistrarVueloComponent,
-    VuelosComprarComponent
+    VuelosComprarComponent,
+    ContactoComponent,
+    PoliticasComponent,
+    RegistroActividadesComponent
    ],
   imports: [
     BrowserModule,

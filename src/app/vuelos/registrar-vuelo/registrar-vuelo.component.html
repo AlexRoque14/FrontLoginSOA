@@ -9,13 +9,24 @@
             <form [formGroup]="registroForm" autocomplete="nope">
               <div class="row form-group">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Origen / From" formControlName="origen"
-                    autocomplete="nope" required>
+                    <div class="form-group col-md-4">
+                      <label for="inputCity">Origen</label>
+                      <select id="inputState" class="form-control" formControlName="origen">
+                        <option  *ngFor="let origen of origenes"
+                        value="{{origen.nombre_origen}}" >{{origen.nombre_origen}}</option>
+                      </select>
+                    </div>
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Destino / to" formControlName="destino"
-                    autocomplete="nope" required>
+                  <div class="form-group col-md-4">
+                    <label for="inputCity">Destino</label>
+                    <select id="inputState" class="form-control" formControlName="destino">
+                      <option  *ngFor="let dest of destino"
+                      value="{{dest.nombre_destino}}">{{dest.nombre_destino}}</option>
+                    </select>
+                  </div>
                 </div>
+
               </div>
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Aerolinea / Aeroline" formControlName="operador"
@@ -30,12 +41,13 @@
                   autocomplete="nope" required>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Fecha - Hora/ Date - Time" formControlName="hora"
+                <input type="text" class="form-control" placeholder="Fecha - Hora/ Date - Time" formControlName="hora_fecha"
                   autocomplete="nope" required>
               </div>
               <div><br><br>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!registroForm.valid"
-                  (click)="onRegister(registroForm.value)">Registrar</button>
+                <!-- -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block" 
+                  (click)="onRegister(registroForm.value)" >Registrar</button>
                 <button type="submit" class="btn btn-danger btn-lg btn-block" (click)="cancel()">Cancelar</button>
               </div>
             </form>
