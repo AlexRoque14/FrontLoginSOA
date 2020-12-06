@@ -11,7 +11,8 @@
               <div class="form-group col-md-11">
                 <label for="inputState"></label>
                 <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
-                  <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}</option>
+                  <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -24,28 +25,29 @@
               <div class="form-group col-md-11">
                 <label for="inputState"></label>
                 <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
-                  <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}" (click)="nombreD(dest.nombre_destino)">
+                  <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}"
+                    (click)="nombreD(dest.nombre_destino)">
                     {{dest.nombre_destino}}</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
-  
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Buscar destino</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)" >Encontrar vuelos</button>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Buscar destino</h5>
+            <div class="form-row">
+              <div class="form-group col-md-11">
+                <label for="inputState"></label>
+                <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)">Encontrar vuelos</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-</form>
+    </form>
 
 
     <!-- Inicio de la tabla -->
@@ -72,17 +74,22 @@
           </thead>
           <tbody>
             <tr *ngFor="let vuelo of vuelos; index as i">
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino" >{{vuelo.origen}}</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>     
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
-                <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
-                <td><button class="btn btn-success">Comprar Vuelo</button></td>
-              <div *ngIf ="ori != vuelo.origen && de != vuelo.destino">
-                <td><h5>No se encontraron vuelos con estas caracteristicas.</h5></td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.origen}}</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                Comprar
+              </button>
+              <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
+                <td>
+                  <h5>No se encontraron vuelos con estas caracteristicas.</h5>
+                </td>
               </div>
             </tr>
           </tbody>
@@ -98,50 +105,52 @@
 
 <!-- Para cuando no esta loggeado -->
 <ng-template #elseBlock>
-    <form [formGroup]="registroForm" autocomplete="nope">
-      <div class="card-deck c">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Origen</h5>
-            <div class="form-row">
-              <div class="form-group col-md-11">
-                <label for="inputState"></label>
-                <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
-                  <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}</option>
-                </select>
-              </div>
+  <form [formGroup]="registroForm" autocomplete="nope">
+    <div class="card-deck c">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Origen</h5>
+          <div class="form-row">
+            <div class="form-group col-md-11">
+              <label for="inputState"></label>
+              <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
+                <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}
+                </option>
+              </select>
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Destino</h5>
-            <div class="form-row">
-              <div class="form-group col-md-11">
-                <label for="inputState"></label>
-                <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
-                  <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}" (click)="nombreD(dest.nombre_destino)">
-                    {{dest.nombre_destino}}</option>
-                </select>
-              </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Destino</h5>
+          <div class="form-row">
+            <div class="form-group col-md-11">
+              <label for="inputState"></label>
+              <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
+                <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}"
+                  (click)="nombreD(dest.nombre_destino)">
+                  {{dest.nombre_destino}}</option>
+              </select>
             </div>
           </div>
         </div>
-  
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Buscar destino</h5>
-        <div class="form-row">
-          <div class="form-group col-md-11">
-            <label for="inputState"></label>
-            <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)" >Encontrar vuelos</button>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Buscar destino</h5>
+          <div class="form-row">
+            <div class="form-group col-md-11">
+              <label for="inputState"></label>
+              <button class="btn btn-primary" (click)="buscarVuelos(registroForm.value)">Encontrar vuelos</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</form>
+  </form>
   <!-- inicia la tabla -->
   <div class="card c">
     <div class="card-body ">
@@ -166,17 +175,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let vuelo of vuelos; index as i">
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino" >{{vuelo.origen}}</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>     
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
-              <td *ngIf ="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.origen}}</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
 
-            <div *ngIf ="ori != vuelo.origen && de != vuelo.destino">
-                <h5>No se encontraron vuelos con estas caracteristicas.</h5>
+            <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
+              <h5>No se encontraron vuelos con estas caracteristicas.</h5>
             </div>
           </tr>
         </tbody>
@@ -229,74 +238,116 @@
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
-              <a><i>(1) Unicamente se permite equipaje de mano.</i></a><br>
-              <a><i>● Bolsa de mano</i></a><br>
-              <a><i>● Mochilas, portafolios, carteras</i></a><br>
-              <a><i>● Cámara</i></a><br>
-              <a><i>(2) Objetos restringidos.</i></a><br>
-              <a><i>● Objetos punzocortantes</i></a><br>
-              <a><i>● Encendedores o objetos incendiarios</i></a><br>
+            <a><i>(1) Unicamente se permite equipaje de mano.</i></a><br>
+            <a><i>● Bolsa de mano</i></a><br>
+            <a><i>● Mochilas, portafolios, carteras</i></a><br>
+            <a><i>● Cámara</i></a><br>
+            <a><i>(2) Objetos restringidos.</i></a><br>
+            <a><i>● Objetos punzocortantes</i></a><br>
+            <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="clasica" role="tabpanel" aria-labelledby="clasica-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
-              <a><i>(1) Unicamente se permiten.</i></a><br>
-              <a><i>● Dos equipajes de mano</i></a><br>
-              <a><i>● Mochilas, portafolios, carteras</i></a><br>
-              <a><i>● Equipajes documentados (25kg)</i></a><br>
-              <a><i>● Prioridad en abordaje</i></a><br>
-              <a><i>● Seleccion de asientos estandar y atención personal</i></a><br>
-              <a><i>(2) Objetos restringidos.</i></a><br>
-              <a><i>● Objetos punzocortantes</i></a><br>
-              <a><i>● Encendedores o objetos incendiarios</i></a><br>
+            <a><i>(1) Unicamente se permiten.</i></a><br>
+            <a><i>● Dos equipajes de mano</i></a><br>
+            <a><i>● Mochilas, portafolios, carteras</i></a><br>
+            <a><i>● Equipajes documentados (25kg)</i></a><br>
+            <a><i>● Prioridad en abordaje</i></a><br>
+            <a><i>● Seleccion de asientos estandar y atención personal</i></a><br>
+            <a><i>(2) Objetos restringidos.</i></a><br>
+            <a><i>● Objetos punzocortantes</i></a><br>
+            <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="plus" role="tabpanel" aria-labelledby="plus-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
-              <a><i>(1) Unicamente se permiten.</i></a><br>
-              <a><i>● Dos equipajes de mano</i></a><br>
-              <a><i>● Mochilas, portafolios, carteras</i></a><br>
-              <a><i>● Equipajes documentados (25kg)</i></a><br>
-              <a><i>● Viaja con la mayor flexibilidad, el primer cambio en tu vuelo es sin costo</i></a><br>
-              <a><i>● Compartimentos exclusivos para equipaje a bordo y asiento AM Plus con espacio extra</i></a><br>
-              <a><i>(2) Objetos restringidos.</i></a><br>
-              <a><i>● Objetos punzocortantes</i></a><br>
-              <a><i>● Encendedores o objetos incendiarios</i></a><br>
+            <a><i>(1) Unicamente se permiten.</i></a><br>
+            <a><i>● Dos equipajes de mano</i></a><br>
+            <a><i>● Mochilas, portafolios, carteras</i></a><br>
+            <a><i>● Equipajes documentados (25kg)</i></a><br>
+            <a><i>● Viaja con la mayor flexibilidad, el primer cambio en tu vuelo es sin costo</i></a><br>
+            <a><i>● Compartimentos exclusivos para equipaje a bordo y asiento AM Plus con espacio extra</i></a><br>
+            <a><i>(2) Objetos restringidos.</i></a><br>
+            <a><i>● Objetos punzocortantes</i></a><br>
+            <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="confor" role="tabpanel" aria-labelledby="confor-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
-              <a><i>(1) Unicamente se permiten.</i></a><br>
-              <a><i>● Dos equipajes de mano</i></a><br>
-              <a><i>● Mochilas, portafolios, carteras</i></a><br>
-              <a><i>● Equipajes documentados (Hasta 2 maletas de 25kg)</i></a><br>
-              <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
-              <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
-              <a><i>(2) Objetos restringidos.</i></a><br>
-              <a><i>● Objetos punzocortantes</i></a><br>
-              <a><i>● Encendedores o objetos incendiarios</i></a><br>
+            <a><i>(1) Unicamente se permiten.</i></a><br>
+            <a><i>● Dos equipajes de mano</i></a><br>
+            <a><i>● Mochilas, portafolios, carteras</i></a><br>
+            <a><i>● Equipajes documentados (Hasta 2 maletas de 25kg)</i></a><br>
+            <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
+            <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
+            <a><i>(2) Objetos restringidos.</i></a><br>
+            <a><i>● Objetos punzocortantes</i></a><br>
+            <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
           <div class="tab-pane fade" id="premiere" role="tabpanel" aria-labelledby="premiere-tab">
             <p>Con el objetivo de cuidar tu salud y la de los demás, hemos implementado un nuevo proceso de embarque
               iniciando el abordaje con las últimas filas y posteriormente el frente del avión. La seguridad es
               responsabilidad de todos, agradecemos tu comprensión.</p>
-              <a><i>(1) Unicamente se permiten.</i></a><br>
-              <a><i>● Dos equipajes de mano</i></a><br>
-              <a><i>● Mochilas, portafolios, carteras</i></a><br>
-              <a><i>● Equipajes documentados (Hasta 3 maletas de 25kg o más)</i></a><br>
-              <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
-              <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
-              <a><i>(2) Objetos restringidos.</i></a><br>
-              <a><i>● Objetos punzocortantes</i></a><br>
-              <a><i>● Encendedores o objetos incendiarios</i></a><br>
+            <a><i>(1) Unicamente se permiten.</i></a><br>
+            <a><i>● Dos equipajes de mano</i></a><br>
+            <a><i>● Mochilas, portafolios, carteras</i></a><br>
+            <a><i>● Equipajes documentados (Hasta 3 maletas de 25kg o más)</i></a><br>
+            <a><i>● Vuela en Clase Premier y viaja con más espacio personal</i></a><br>
+            <a><i>● Disfruta de alimentos exclusivos a bordo</i></a><br>
+            <a><i>(2) Objetos restringidos.</i></a><br>
+            <a><i>● Objetos punzocortantes</i></a><br>
+            <a><i>● Encendedores o objetos incendiarios</i></a><br>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn b6" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registroForm2" autocomplete="nope">
+          <input type="hidden" name="token_id" id="token_id" />
+          <fieldset>
+            <legend>Datos del cliente</legend>
+            <p>
+              <label>Nombre</label>
+              <input type="text" size="20" autocomplete="on" name="client_name" formControlName="name"/>
+            </p>
+            <p>
+              <label>Correo Electr&oacute;nico</label>
+              <input type="text" size="20" autocomplete="on" name="cliente_email" formControlName="email"/>
+            </p>
+            <p>
+              <label>Nombre</label>
+              <input type="text" size="20" autocomplete="off" data-openpay-card="holder_name" formControlName="last_name"/>
+            </p>
+          </fieldset>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" 
+                  (click)="comprarVuelo(registroForm2.value)" >Registrar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
       </div>
     </div>
   </div>

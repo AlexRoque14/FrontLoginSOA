@@ -28,6 +28,7 @@
     "google-libphonenumber": "^3.2.14",
     "jquery": "^3.5.1",
     "ngx-intl-tel-input": "^3.0.3",
+    "openpay": "^1.0.5",
     "rxjs": "~6.5.4",
     "swal": "^0.1.0",
     "sweetalert": "^2.1.2",

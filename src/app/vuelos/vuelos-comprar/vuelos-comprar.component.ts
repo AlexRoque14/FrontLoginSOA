@@ -24,6 +24,7 @@ export class VuelosComprarComponent implements OnInit {
   vuelos: any;
   ori: any;
   de: any;
+  registroForm2: any;
   
 
   constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { 
@@ -31,6 +32,13 @@ export class VuelosComprarComponent implements OnInit {
     this.registroForm = fb.group({
       origen: ['', [Validators.required]],
       destino: ['', [Validators.required]],
+    })
+
+    this.registroForm2 = fb.group({
+      name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      amount: ['1000', [Validators.required]],
     })
   }
 
@@ -105,5 +113,19 @@ export class VuelosComprarComponent implements OnInit {
     console.log(destino)
   }
 
+  //pago
+  async comprarVuelo(registroForm2: any){
+    console.log(registroForm2)
+    await this.authService.setPagoOpenPay(registroForm2).subscribe(response =>{
+      console.log(response)
+      if(response){
+        Swal.fire({
+          icon: 'success',
+          title: 'Yes!',
+          text: 'Por favor, revisa tu correo electronico para continuar con el proceso.',
+        });
+      }
+    })
+  }
 
 }

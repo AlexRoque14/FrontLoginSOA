@@ -126,7 +126,7 @@ export class AuthService {
   //enviar correos
   sendEmail(body: any): Observable<any>{   
     try {
-       return this.http.post<any>('http://localhost:4000/email', body)
+       return this.http.post<any>( this.URL + '/email', body)
     } catch (error) {
       console.log(error)
     }
@@ -134,7 +134,7 @@ export class AuthService {
 
   sendEmailRegistro(body: any): Observable<any>{
     try {
-      return this.http.post<any>('http://localhost:4000/email_registro', body)
+      return this.http.post<any>( this.URL +'/email_registro', body)
    } catch (error) {
      console.log(error)
    }
@@ -182,6 +182,16 @@ export class AuthService {
     }
   }
 
+  //comprar
+  setPagoOpenPay(body: any): Observable<any>{
+    try {
+      this.token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      return this.http.post<any>(this.URL + '/pagar' ,body, {headers: headers })
+   } catch (error) {
+     console.log(error)
+   }
+  }
 
 
   //M E T H O D S -  W I T H  -  F I R E B A SE

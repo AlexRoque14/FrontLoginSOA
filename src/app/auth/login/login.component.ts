@@ -125,8 +125,8 @@ export class LoginComponent implements OnInit {
   }
 
   //login con la api
-  onLoginApi(loginForm: any) {
-    this.authService.ApiLogin(loginForm).subscribe(async response => {
+  async onLoginApi(loginForm: any) {
+     await this.authService.ApiLogin(loginForm).subscribe(async response => {
       if (response) {
         Swal.fire({
           icon: 'success',
@@ -153,7 +153,7 @@ export class LoginComponent implements OnInit {
         }
 
         //envia a el log
-        this.authService.ApiSetLog(log).subscribe(response => {
+        await this.authService.ApiSetLog(log).subscribe(response => {
           if (response) {
             console.log('Log creado', response)
           }
@@ -162,6 +162,7 @@ export class LoginComponent implements OnInit {
         })
 
         this.router.navigate(['/home']);      //Rederidige al inicio
+        this.ngOnInit();
       }
     }, err => {
       console.log('Error de sesión')
