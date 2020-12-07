@@ -77,9 +77,9 @@ export class RegisterComponent implements OnInit {
               }
     
               this.authService.sendEmailRegistro(correo).subscribe(response => {
-                if (response) {
-                  console.log('email enviado', response)
-                }
+                // if (response) {
+                //   console.log('email enviado', response)
+                // }
               }, err => {
                 console.log(err)
               })

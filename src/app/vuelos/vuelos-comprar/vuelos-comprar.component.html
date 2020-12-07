@@ -10,7 +10,7 @@
             <div class="form-row">
               <div class="form-group col-md-11">
                 <label for="inputState"></label>
-                <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
+                <select class="custom-select"  formControlName="origen">
                   <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}
                   </option>
                 </select>
@@ -24,7 +24,7 @@
             <div class="form-row">
               <div class="form-group col-md-11">
                 <label for="inputState"></label>
-                <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
+                <select class="custom-select"  formControlName="destino">
                   <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}"
                     (click)="nombreD(dest.nombre_destino)">
                     {{dest.nombre_destino}}</option>
@@ -84,14 +84,12 @@
               <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_premiere}} MXN</td>
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"
-                *ngIf="ori == vuelo.origen && de == vuelo.destino" (click)="datosVuelo(vuelo.id)">
+                *ngIf="ori == vuelo.origen && de == vuelo.destino" (click)="datosVuelo(vuelo.id)" >
                 Comprar
               </button>
-              <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
-                <td>
-                  <h5>No se encontraron vuelos con estas caracteristicas.</h5>
-                </td>
-              </div>
+                <!-- <td *ngIf="ori != vuelo.origen && de != vuelo.destino">
+                  No se encontraron vuelos con estas caracteristicas.
+                </td>  -->
             </tr>
           </tbody>
           <!-- *ngIf= "ori == vuelo.origen" -->
@@ -114,7 +112,7 @@
           <div class="form-row">
             <div class="form-group col-md-11">
               <label for="inputState"></label>
-              <select class="custom-select" id="inputGroupSelect01" formControlName="origen">
+              <select class="custom-select"  formControlName="origen">
                 <option *ngFor="let origen of origenes" value="{{origen.nombre_origen}}">{{origen.nombre_origen}}
                 </option>
               </select>
@@ -128,7 +126,7 @@
           <div class="form-row">
             <div class="form-group col-md-11">
               <label for="inputState"></label>
-              <select class="custom-select" id="inputGroupSelect01" formControlName="destino">
+              <select class="custom-select" formControlName="destino">
                 <option *ngFor="let dest of destino" value="{{dest.nombre_destino}}"
                   (click)="nombreD(dest.nombre_destino)">
                   {{dest.nombre_destino}}</option>
@@ -185,9 +183,9 @@
             <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_plus}} MXN</td>
             <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_premiere}} MXN</td>
 
-            <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
-              <h5>No se encontraron vuelos con estas caracteristicas.</h5>
-            </div>
+            <!-- <td *ngIf="ori != vuelo.origen && de != vuelo.destino">
+              No se encontraron vuelos con estas caracteristicas.
+            </td>  -->
           </tr>
         </tbody>
         <!-- *ngIf= "ori == vuelo.origen" -->
@@ -341,7 +339,7 @@
             <input type="email" class="form-control" autocomplete="nope" name="cliente_email" formControlName="email">
           </div>
           <div class="form-group">
-            <label for="inputCity">Destino</label>
+            <label for="inputCity">Clase</label>
             <select id="inputState" class="form-control" formControlName="amount"  >
               <option value="1">Básica</option>
               <option value="2">clásica</option>
@@ -351,7 +349,7 @@
             </select>
           </div>
           <button type="submit" class="btn btn-success btn-lg btn-block"
-            (click)="comprarVuelo(registroForm2.value)" data-dismiss="modal">Realizar Compra</button>
+            (click)="comprarVuelo(registroForm2.value)" data-dismiss="modal" [disabled]="!registroForm2.valid">Realizar Compra</button>
         </form>
       </div>
       <div class="modal-footer">

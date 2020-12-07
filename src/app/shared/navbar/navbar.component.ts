@@ -26,13 +26,15 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit() {
-    this.authService.ApiGetById(localStorage.getItem('id_user')).subscribe(response => {
-      if (response) {
-        this.isLogged = true;
-        this.user = response.user.email;
-        this.roll = response.user.roll;
-      }
-    })
+    if(localStorage.getItem('id_user')){
+      this.authService.ApiGetById(localStorage.getItem('id_user')).subscribe(response => {
+        if (response) {
+          this.isLogged = true;
+          this.user = response.user.email;
+          this.roll = response.user.roll;
+        }
+      })
+    }
   }
 
   async onOut() {
@@ -74,15 +76,21 @@ export class NavbarComponent implements OnInit {
       
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log actualizado', response)
-        }
+        // if (response) {
+        //   console.log('Log actualizado', response)
+        // }
       }, err => {
         console.log(err)
       })
 
-      localStorage.removeItem('rs')
-      localStorage.removeItem('isLog')
+      // localStorage.removeItem('rs')
+      // localStorage.removeItem('isLog')
+      // localStorage.removeItem('id_user')
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('isLog')
+      // localStorage.removeItem('rol')
+      // localStorage.removeItem('usuario')
+      localStorage.clear()
       this.authService.logout();
       this.router.navigate(['/home']);
 
@@ -114,20 +122,15 @@ export class NavbarComponent implements OnInit {
 
     //envia a el log
     this.authService.ApiSetLog(log).subscribe(response => {
-      if (response) {
-        console.log('Log actualizado', response)
-      }
+      // if (response) {
+      //   console.log('Log actualizado', response)
+      // }
     }, err => {
       console.log(err)
     })
 
     this.isLogged = false;
-    localStorage.removeItem('id_user')
-    localStorage.removeItem('email_user')
-    localStorage.removeItem('token')
-    localStorage.removeItem('isLog')
-    localStorage.removeItem('rol')
-    localStorage.removeItem('isLog')
+    localStorage.clear()
     this.router.navigate(['/home']);
   }
 

@@ -23,7 +23,7 @@ export class RegistroActividadesComponent implements OnInit {
 
   getArchivosLogs(){
     this.authService.getLogs().subscribe(response => {
-      console.log(response['logs'])
+      //console.log(response['logs'])
       this.users = response['logs'];
     })
   }

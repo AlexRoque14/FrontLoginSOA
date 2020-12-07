@@ -73,9 +73,9 @@ export class RegistrarVueloComponent implements OnInit {
 
           //envia a el log
           this.authService.ApiSetLog(log).subscribe(response => {
-            if (response) {
-              console.log('Log creado', response)
-            }
+            // if (response) {
+            //   console.log('Log creado', response)
+            // }
           }, err => {
             console.log(err)
           })
@@ -153,19 +153,19 @@ export class RegistrarVueloComponent implements OnInit {
   async geOri(id){
     await this.authService.getOrigenID(id).subscribe(response => {
       this.origin = response['ori'].nombre_origen;
-      console.log(this.origin);
+      //console.log(this.origin);
     })
   }
 
   async getDest(id){
     await this.authService.getDestinoID(id).subscribe(response =>{
       this.destiny = response['destin'].nombre_destino
-      console.log( this.destiny)
+      //console.log( this.destiny)
     })
   }
 
   nombreD(destino){
-    console.log(destino)
+    //console.log(destino)
   }
 
 

@@ -17,7 +17,7 @@ export class AuthService {
   constructor(public afAuth: AngularFireAuth, private http: HttpClient) { }
 
   URL: string = "https://aeroline.herokuapp.com";
-	token: any;
+	
   public id: any;
   email: any;
 
@@ -45,8 +45,9 @@ export class AuthService {
   //traer usuario por id
   ApiGetById(id: String): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
       return this.http.get<any>(this.URL + '/user/' + id, {headers: headers })
    
     } catch (error) {
@@ -58,8 +59,8 @@ export class AuthService {
   //registro vuelos
   ApiSetVuelo(body: any): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
       return this.http.post<any>(this.URL + '/vuelos' , body, {headers: headers })
     } catch (error) {
       console.log(error)
@@ -68,8 +69,8 @@ export class AuthService {
 
   ApiGetVuelo(): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      //let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
       return this.http.get<any>(this.URL + '/vuelos')
     } catch (error) {
       console.log(error)
@@ -78,8 +79,8 @@ export class AuthService {
 
   ApiGetVueloById(id: string): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
       return this.http.get<any>(this.URL + '/vuelos/' + id, {headers: headers })
     } catch (error) {
       console.log(error)
@@ -88,8 +89,8 @@ export class AuthService {
 
   ApiUpdateVueloById(id: string, body: any): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
       return this.http.put<any>(this.URL + '/vuelos/' + id, body, {headers: headers })
     } catch (error) {
       console.log(error)
@@ -98,8 +99,8 @@ export class AuthService {
 
   ApiDeleteVueloById(id: string): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization',token);
       return this.http.delete<any>(this.URL + '/vuelos/' + id, {headers: headers })
     } catch (error) {
       console.log(error)
@@ -185,8 +186,8 @@ export class AuthService {
   //comprar
   setPagoOpenPay(body: any): Observable<any>{
     try {
-      this.token = localStorage.getItem('token');
-      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', this.token);
+      const token = localStorage.getItem('token');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json').set('Authorization', token);
       return this.http.post<any>(this.URL + '/pagar' ,body, {headers: headers })
    } catch (error) {
      console.log(error)

@@ -45,7 +45,7 @@ export class ListaVuelosComponent implements OnInit {
       const vuelo = (this.authService.ApiGetVuelo().subscribe(response => {
         if (vuelo) {
           this.vuelos = response['vuelos'];
-          console.log(response);
+          //console.log(response);
         }
       })
       )
@@ -82,9 +82,9 @@ export class ListaVuelosComponent implements OnInit {
 
           //envia a el log
           this.authService.ApiSetLog(log).subscribe(response => {
-            if (response) {
-              console.log('Log creado', response)
-            }
+            // if (response) {
+            //   console.log('Log creado', response)
+            // }
           }, err => {
             console.log(err)
           })
@@ -105,7 +105,7 @@ export class ListaVuelosComponent implements OnInit {
   editarVuelo(id: any){
       this.authService.ApiGetVueloById(id).subscribe(response =>{
         this.vueloID = response['vuelo']
-        console.log(this.vueloID)
+        //console.log(this.vueloID)
         this.operador = this.vueloID.operador;
         this.clase = this.vueloID.clase;
         this.sala = this.vueloID.sala;
@@ -132,7 +132,7 @@ export class ListaVuelosComponent implements OnInit {
 
   eliminarVuelo(id: any){
     this.authService.ApiDeleteVueloById(id).subscribe(response =>{
-      console.log(response)
+      //console.log(response)
       var date = new Date();
       const log = {
         id_usuario: localStorage.getItem('id_user'),
@@ -147,9 +147,9 @@ export class ListaVuelosComponent implements OnInit {
 
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })

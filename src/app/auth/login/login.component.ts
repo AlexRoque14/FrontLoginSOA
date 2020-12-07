@@ -51,11 +51,12 @@ export class LoginComponent implements OnInit {
           intentos: this.contador
       }
 
+      localStorage.setItem('token', 'AuthFirebase')
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit {
     } else if (user) {
       this.router.navigate(['/verification-email'])
     } else {
-      console.log('Error de sesión firebase')
+      //console.log('Error de sesión firebase')
 
       if (this.contador > 1) {
         Swal.fire({
@@ -110,9 +111,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -123,6 +124,7 @@ export class LoginComponent implements OnInit {
       // console.log("contador " + this.contador)
     }
   }
+
 
   //login con la api
   async onLoginApi(loginForm: any) {
@@ -154,18 +156,16 @@ export class LoginComponent implements OnInit {
 
         //envia a el log
         await this.authService.ApiSetLog(log).subscribe(response => {
-          if (response) {
-            console.log('Log creado', response)
-          }
+
         }, err => {
           console.log(err)
         })
 
-        this.router.navigate(['/home']);      //Rederidige al inicio
-        this.ngOnInit();
+        await this.router.navigate(['/home']);      //Rederidige al inicio
+        location.reload()
       }
     }, err => {
-      console.log('Error de sesión')
+      
       if (this.contador > 1) {
         Swal.fire({
           icon: 'error',
@@ -232,7 +232,7 @@ export class LoginComponent implements OnInit {
 
 
 
-    console.log("contador " + this.contador)
+    //console.log("contador " + this.contador)
 
   }
 
@@ -246,6 +246,8 @@ export class LoginComponent implements OnInit {
         title: 'Yes!',
         text: 'Inicio de sesión por facebook exitoso!',
       })
+
+      localStorage.setItem('token', 'AuthFacebook')
 
       var date = new Date();
 
@@ -295,6 +297,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
+  //login google
   async onGoogle() {
     localStorage.setItem('rs', '2')
     try {
@@ -305,6 +309,7 @@ export class LoginComponent implements OnInit {
         text: 'Inicio de sesión exitoso!',
       })
 
+      localStorage.setItem('token', 'AuthGoogle')
       var date = new Date();
 
       const log = {
@@ -347,6 +352,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  //login github
   async onGitHub() {
     localStorage.setItem('rs', '3')
     try {
@@ -356,6 +362,8 @@ export class LoginComponent implements OnInit {
         title: 'Yes!',
         text: 'Inicio de sesión exitoso!',
       })
+
+      localStorage.setItem('token', 'AutGithub')
       var date = new Date();
 
       const log = {

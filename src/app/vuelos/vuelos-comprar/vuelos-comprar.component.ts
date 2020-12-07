@@ -122,37 +122,37 @@ export class VuelosComprarComponent implements OnInit {
 
   //imprime el nombre del destino
   nombreD(destino){
-    console.log(destino)
+    //console.log(destino)
   }
 
   //pago
   async comprarVuelo(registroForm2: any){
     if(registroForm2.amount == "1"){
       registroForm2.amount = this.precio_basica
-      console.log(registroForm2.amount)
+      //console.log(registroForm2.amount)
     }
     if(registroForm2.amount == "2"){
       registroForm2.amount = this.precio_clasica
-      console.log(registroForm2.amount)
+     // console.log(registroForm2.amount)
     }
     if(registroForm2.amount == "3"){
       registroForm2.amount = this.precio_confort
-      console.log(registroForm2.amount)
+      //console.log(registroForm2.amount)
     }
     if(registroForm2.amount == "4"){
       registroForm2.amount = this.precio_plus
-      console.log(registroForm2.amount)
+      //console.log(registroForm2.amount)
     }
     if(registroForm2.amount == "5"){
       registroForm2.amount = this.precio_premiere
-      console.log(registroForm2.amount)
+      //console.log(registroForm2.amount)
     }
 
     registroForm2.destino = this.destinoP
     registroForm2.origen = this.origenP
 
     await this.authService.setPagoOpenPay(registroForm2).subscribe(response =>{
-      console.log(response)
+      //console.log(response)
       if(response){
         Swal.fire({
           icon: 'success',
