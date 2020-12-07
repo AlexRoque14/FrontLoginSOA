@@ -191,9 +191,9 @@ export class LoginComponent implements OnInit {
           }
 
           this.authService.sendEmail(correo).subscribe(response => {
-            if (response) {
-              console.log('email enviado', response)
-            }
+            // if (response) {
+            //   console.log('email enviado',)
+            // }
           }, err => {
             console.log(err)
           })
@@ -222,9 +222,9 @@ export class LoginComponent implements OnInit {
 
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -259,9 +259,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -285,9 +285,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -317,9 +317,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -337,9 +337,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -368,9 +368,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })
@@ -388,9 +388,9 @@ export class LoginComponent implements OnInit {
       }
       //envia a el log
       this.authService.ApiSetLog(log).subscribe(response => {
-        if (response) {
-          console.log('Log creado', response)
-        }
+        // if (response) {
+        //   console.log('Log creado', response)
+        // }
       }, err => {
         console.log(err)
       })

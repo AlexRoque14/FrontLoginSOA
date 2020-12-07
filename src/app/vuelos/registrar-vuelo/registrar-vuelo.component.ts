@@ -35,6 +35,11 @@ export class RegistrarVueloComponent implements OnInit {
       clase: ['', [Validators.required]],
       sala: ['', [Validators.required]],
       hora_fecha: ['', [Validators.required]],
+      precio_basica: ['', [Validators.required]],
+      precio_clasica: ['', [Validators.required]],
+      precio_confort: ['', [Validators.required]],
+      precio_plus: ['', [Validators.required]],
+      precio_premiere: ['', [Validators.required]]
     })
 
   }

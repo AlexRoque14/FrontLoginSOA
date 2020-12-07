@@ -20,9 +20,8 @@
                 <div class="col">
                   <div class="form-group col-md-4">
                     <label for="inputCity">Destino</label>
-                    <select id="inputState" class="form-control" formControlName="destino">
-                      <option  *ngFor="let dest of destino"
-                      value="{{dest.nombre_destino}}">{{dest.nombre_destino}}</option>
+                    <select id="inputState" class="form-control" formControlName="destino"  >
+                      <option value="{{dest.nombre_destino}}" *ngFor="let dest of destino">{{dest.nombre_destino}}</option>
                     </select>
                   </div>
                 </div>
@@ -43,6 +42,30 @@
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Fecha - Hora/ Date - Time" formControlName="hora_fecha"
                   autocomplete="nope" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" placeholder="Precio basica"  name="client_name" autocomplete="nope" formControlName="precio_basica">
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" placeholder="Precio clasica"  autocomplete="nope"
+                    formControlName="precio_clasica">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" placeholder="Precio confort"  name="client_name" autocomplete="nope" formControlName="precio_confort">
+                </div>
+                <div class="form-group col-md-6">
+                  
+                  <input type="text" class="form-control" placeholder="Precio plus"  autocomplete="nope"
+                    formControlName="precio_plus">
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control"  placeholder="Precio premiere"  name="client_name" autocomplete="nope" formControlName="precio_premiere">
+                  </div>
+                </div>
               </div>
               <div><br><br>
                 <!-- -->

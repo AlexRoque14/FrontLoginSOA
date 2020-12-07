@@ -15,6 +15,7 @@ export class VuelosComprarComponent implements OnInit {
 
   public isLog1: boolean= false;
   public isLog: any;
+
   vueloID: any;
   origin2: any;
   destiny2: any;
@@ -24,7 +25,16 @@ export class VuelosComprarComponent implements OnInit {
   vuelos: any;
   ori: any;
   de: any;
+  origenP: any;
+  destinoP: any;
   registroForm2: any;
+  vuelosopen: any;
+
+  precio_basica: any;
+  precio_clasica: any;
+  precio_confort: any;
+  precio_plus: any;
+  precio_premiere: any;
   
 
   constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { 
@@ -39,6 +49,8 @@ export class VuelosComprarComponent implements OnInit {
       last_name: ['', [Validators.required]],
       email: ['', [Validators.required]],
       amount: ['1000', [Validators.required]],
+      destino: [''],
+      origen: ['']
     })
   }
 
@@ -46,7 +58,7 @@ export class VuelosComprarComponent implements OnInit {
     this.isLog = localStorage.getItem('isLog')
     if(this.isLog === "1"){
       this.isLog1 = true;
-      console.log(this.isLog1)
+      //console.log(this.isLog1)
     }
 
     this.getDestino()
@@ -59,7 +71,7 @@ export class VuelosComprarComponent implements OnInit {
       const vuelo = (this.authService.ApiGetVuelo().subscribe(response => {
         if (vuelo) {
           this.vuelos = response['vuelos'];
-          console.log(response);
+          //console.log(response);
         }
       })
       )
@@ -74,7 +86,7 @@ export class VuelosComprarComponent implements OnInit {
 
     this.ori = registroForm.origen
     this.de = registroForm.destino
-    console.log(this.ori)
+    //console.log(this.ori)
   }
 
 
@@ -115,7 +127,30 @@ export class VuelosComprarComponent implements OnInit {
 
   //pago
   async comprarVuelo(registroForm2: any){
-    console.log(registroForm2)
+    if(registroForm2.amount == "1"){
+      registroForm2.amount = this.precio_basica
+      console.log(registroForm2.amount)
+    }
+    if(registroForm2.amount == "2"){
+      registroForm2.amount = this.precio_clasica
+      console.log(registroForm2.amount)
+    }
+    if(registroForm2.amount == "3"){
+      registroForm2.amount = this.precio_confort
+      console.log(registroForm2.amount)
+    }
+    if(registroForm2.amount == "4"){
+      registroForm2.amount = this.precio_plus
+      console.log(registroForm2.amount)
+    }
+    if(registroForm2.amount == "5"){
+      registroForm2.amount = this.precio_premiere
+      console.log(registroForm2.amount)
+    }
+
+    registroForm2.destino = this.destinoP
+    registroForm2.origen = this.origenP
+
     await this.authService.setPagoOpenPay(registroForm2).subscribe(response =>{
       console.log(response)
       if(response){
@@ -125,6 +160,20 @@ export class VuelosComprarComponent implements OnInit {
           text: 'Por favor, revisa tu correo electronico para continuar con el proceso.',
         });
       }
+    })
+
+  }
+
+  //extraer datos del vuelo
+  async datosVuelo(id){
+    await this.authService.ApiGetVueloById(id).subscribe(response =>{
+      this.origenP = response['vuelo'].origen
+      this.destinoP = response['vuelo'].destino
+      this.precio_basica = response['vuelo'].precio_basica
+      this.precio_clasica = response['vuelo'].precio_clasica
+      this.precio_confort = response['vuelo'].precio_confort
+      this.precio_plus = response['vuelo'].precio_plus
+      this.precio_premiere = response['vuelo'].precio_premiere
     })
   }
 

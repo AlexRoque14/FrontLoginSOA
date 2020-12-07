@@ -77,13 +77,14 @@
               <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
               <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.origen}}</td>
               <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
-              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>
-              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
-              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
-              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
-              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_basica}} MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_clasica}} MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_confort}} MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_plus}} MXN</td>
+              <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_premiere}} MXN</td>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"
+                *ngIf="ori == vuelo.origen && de == vuelo.destino" (click)="datosVuelo(vuelo.id)">
                 Comprar
               </button>
               <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
@@ -178,11 +179,11 @@
             <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.hora_fecha}}</td>
             <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.origen}}</td>
             <td *ngIf="ori == vuelo.origen && de == vuelo.destino">{{vuelo.destino}}</td>
-            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$100 MXN</td>
-            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$200 MXN</td>
-            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$400 MXN</td>
-            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$600 MXN</td>
-            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">$1000 MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_basica}} MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_clasica}} MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_confort}} MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_plus}} MXN</td>
+            <td *ngIf="ori == vuelo.origen && de == vuelo.destino">${{vuelo.precio_premiere}} MXN</td>
 
             <div *ngIf="ori != vuelo.origen && de != vuelo.destino">
               <h5>No se encontraron vuelos con estas caracteristicas.</h5>
@@ -311,43 +312,50 @@
   </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Registro de pago.</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="registroForm2" autocomplete="nope">
-          <input type="hidden" name="token_id" id="token_id" />
-          <fieldset>
-            <legend>Datos del cliente</legend>
-            <p>
-              <label>Nombre</label>
-              <input type="text" size="20" autocomplete="on" name="client_name" formControlName="name"/>
-            </p>
-            <p>
-              <label>Correo Electr&oacute;nico</label>
-              <input type="text" size="20" autocomplete="on" name="cliente_email" formControlName="email"/>
-            </p>
-            <p>
-              <label>Nombre</label>
-              <input type="text" size="20" autocomplete="off" data-openpay-card="holder_name" formControlName="last_name"/>
-            </p>
-          </fieldset>
-          <button type="submit" class="btn btn-primary btn-lg btn-block" 
-                  (click)="comprarVuelo(registroForm2.value)" >Registrar</button>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Nombre(s)</label>
+              <input type="text" class="form-control" name="client_name" autocomplete="nope" formControlName="name">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Apellido(s)</label>
+              <input type="text" class="form-control" data-openpay-card="holder_name" autocomplete="nope"
+                formControlName="last_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Correo Electr&oacute;nico</label>
+            <input type="email" class="form-control" autocomplete="nope" name="cliente_email" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="inputCity">Destino</label>
+            <select id="inputState" class="form-control" formControlName="amount"  >
+              <option value="1">Básica</option>
+              <option value="2">clásica</option>
+              <option value="3">Plus</option>
+              <option value="4">Confort</option>
+              <option value="5">Premier</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success btn-lg btn-block"
+            (click)="comprarVuelo(registroForm2.value)" data-dismiss="modal">Realizar Compra</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
